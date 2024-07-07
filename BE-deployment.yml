@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-backend
+  labels:
+    app: flask-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-backend
+  template:
+    metadata:
+      labels:
+        app: flask-backend
+    spec:
+      containers:
+        - name: flask-backend
+          image: deveshkkr/flask_app_backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: "sql12.freesqldatabase.com"
+            - name: DB_DATABASE
+              value: "YourUserName"
+            - name: DB_USER
+              value: "YourUserName"
+            - name: DB_PASSWORD
+              value: "yourPWD"
+            - name: DB_CHARSET
+              value: "utf8mb4"
